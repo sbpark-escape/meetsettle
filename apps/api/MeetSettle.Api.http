@@ -1,0 +1,18 @@
+@MeetSettle.Api_HostAddress = http://localhost:5076
+
+POST {{MeetSettle.Api_HostAddress}}/api/meetups
+Content-Type: application/json
+
+{
+  "name": "Friday dinner",
+  "date": "2026-06-11",
+  "location": "Seoul",
+  "currency": "KRW"
+}
+
+###
+
+GET {{MeetSettle.Api_HostAddress}}/api/meetups/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+###

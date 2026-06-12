@@ -1,0 +1,42 @@
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.vs/
+*.suo
+*.user
+*.DotSettings.user
+
+# Node
+node_modules/
+.next/
+out/
+dist/
+coverage/
+.vercel/
+.turbo/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# .NET
+bin/
+obj/
+TestResults/
+
+# Environment
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+appsettings.Production.json
+secrets.json
+*.pem
+*.pfx
+
+# Local data
+.tmp/
+tmp/

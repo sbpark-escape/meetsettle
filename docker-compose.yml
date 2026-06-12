@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-meetsettle}
+      POSTGRES_USER: ${POSTGRES_USER:-meetsettle}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-meetsettle_dev_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-meetsettle} -d ${POSTGRES_DB:-meetsettle}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=${POSTGRES_DB:-meetsettle};Username=${POSTGRES_USER:-meetsettle};Password=${POSTGRES_PASSWORD:-meetsettle_dev_password}
+      ALLOWED_ORIGINS: http://localhost:3000
+    ports:
+      - "5076:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        NEXT_PUBLIC_API_BASE_URL: http://localhost:5076
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:5076
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  postgres-data:
