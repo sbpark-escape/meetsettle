@@ -16,7 +16,7 @@ jobs:
           dotnet-version: "8.0.x"
       - run: dotnet restore
       - run: dotnet build --no-restore
-      - run: dotnet test packages/settlement-core.tests/MeetSettle.SettlementCore.Tests.csproj --no-build --verbosity normal
+      - run: dotnet test --no-build --verbosity normal
 
   frontend:
     runs-on: ubuntu-latest

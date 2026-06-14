@@ -5,6 +5,7 @@
 ### Added
 
 - Lightweight `GET /health` API endpoint for uptime checks.
+- API integration coverage for the main meetup settlement flow.
 
 ## v0.1.0 - 2026-06-14
 
