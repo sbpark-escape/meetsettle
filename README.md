@@ -86,6 +86,14 @@ See [docs/configuration.md](docs/configuration.md) for more detail.
 
 ## Example usage
 
+Check the API process:
+
+```bash
+curl http://localhost:5076/health
+```
+
+The health endpoint returns `200 OK` with `{"status":"ok"}` and does not query PostgreSQL.
+
 Create a meetup:
 
 ```bash
@@ -132,7 +140,7 @@ Deployment notes are in [docs/deployment.md](docs/deployment.md).
 
 ## Contributing
 
-Small, focused changes are easiest to review. Please include tests for settlement calculation changes and describe setup or configuration changes in the related docs.
+Small, focused changes are easiest to discuss. Please include tests for settlement calculation changes and describe setup or configuration changes in the related docs.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for local setup and pull request notes.
 

@@ -20,4 +20,4 @@ Describe what changed and why.
 
 ## Notes
 
-Add review notes, screenshots, or follow-up work.
+Add implementation notes, screenshots, or follow-up work.

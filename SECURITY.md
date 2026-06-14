@@ -1,6 +1,6 @@
 # Security Policy
 
-MeetSettle is an early-stage example for meetup expense tracking. Do not use it for sensitive payment flows without your own security review.
+MeetSettle is an early-stage example for meetup expense tracking. Do not use it for sensitive payment flows without your own security checks.
 
 ## Supported Versions
 

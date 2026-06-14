@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Lightweight `GET /health` API endpoint for uptime checks.
+
 ## v0.1.0 - 2026-06-14
 
 ### Added
