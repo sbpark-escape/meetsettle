@@ -1,56 +1,65 @@
 # Deployment
 
-MeetSettle is designed so the demo app can be deployed on free or low-cost services. These notes are guidance, not a production guarantee.
+This project can be deployed as three parts:
 
-## Web: Vercel
+- PostgreSQL database.
+- ASP.NET Core API.
+- Next.js web app.
 
-Suggested setup:
+One practical setup is Neon for PostgreSQL, Render for the API container, and Vercel for the web app.
 
-- Project root: repository root.
+## Database
+
+Create a PostgreSQL database and copy its connection string.
+
+For Neon, the dashboard provides a connection string from the Connect button. A direct connection string is simplest for the API and EF Core migrations. If you use a pooled connection string, keep Neon's pooling limitations in mind.
+
+## API on Render
+
+The API has a Dockerfile at `apps/api/Dockerfile`. When creating a Render web service:
+
+- Language: Docker.
+- Branch: `main`.
+- Dockerfile path: `apps/api/Dockerfile`.
+- Docker context: repository root.
+
+Set these environment variables:
+
+| Name | Value |
+| --- | --- |
+| `ASPNETCORE_ENVIRONMENT` | `Production` |
+| `ASPNETCORE_URLS` | `http://+:8080` |
+| `ConnectionStrings__DefaultConnection` | PostgreSQL connection string |
+| `ALLOWED_ORIGINS` | Vercel web URL |
+| `APPLY_MIGRATIONS` | `true` for initial setup |
+| `ENABLE_SWAGGER` | `true` if you want `/swagger` available |
+
+After the first successful deploy, you can set `APPLY_MIGRATIONS` to `false` and run migrations intentionally when schema changes are added.
+
+## Web on Vercel
+
+Create a Vercel project from the same GitHub repository.
+
+Use these settings:
+
 - Framework preset: Next.js.
-- Build command: `npm --workspace @meetsettle/web run build`
-- Output: managed by Next.js.
-- Environment variable: `NEXT_PUBLIC_API_BASE_URL`
+- Root directory: `apps/web`.
+- Build command: `npm run build`.
+- Install command: `npm install`.
 
-## API: Render
+Set this environment variable:
 
-Suggested setup:
+| Name | Value |
+| --- | --- |
+| `NEXT_PUBLIC_API_BASE_URL` | Render API URL |
 
-- Runtime: Docker.
-- Dockerfile: `apps/api/Dockerfile`
-- Health check path: add a lightweight health endpoint before production use.
-- Environment variable: `ConnectionStrings__DefaultConnection`
-- Environment variable: `ALLOWED_ORIGINS`
+Redeploy the web app after changing `NEXT_PUBLIC_API_BASE_URL`.
 
-## Database: Neon PostgreSQL
+## Checks After Deploy
 
-Suggested setup:
+Open:
 
-- Create a PostgreSQL database.
-- Copy the pooled connection string into `ConnectionStrings__DefaultConnection`.
-- Run EF Core migrations before the first API deployment.
+- Web: Vercel URL.
+- API Swagger: `https://<render-api-url>/swagger`, if Swagger is enabled.
 
-```bash
-dotnet ef database update --project apps/api/MeetSettle.Api.csproj --startup-project apps/api/MeetSettle.Api.csproj
-```
-
-## Required Environment Variables
-
-- `ConnectionStrings__DefaultConnection`
-- `ALLOWED_ORIGINS`
-- `NEXT_PUBLIC_API_BASE_URL`
-- `POSTGRES_DB`, `POSTGRES_USER`, and `POSTGRES_PASSWORD` for Docker Compose only.
-
-## Free-Tier Limitations
-
-- Render free services may sleep after inactivity.
-- Neon free databases may have connection and storage limits.
-- Vercel frontend deployments need a reachable API URL.
-
-## Known Limitations
-
-- No production authentication yet.
-- No payment-provider integration.
-- No SMS or push notification integration yet.
-- Invite tokens are bearer credentials and should be protected.
-- Rate limiting should be added before public production use.
+Create a meetup from the web UI, add participants and an expense, then open the settlement page.

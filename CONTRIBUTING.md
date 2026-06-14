@@ -5,12 +5,30 @@ Thanks for considering a contribution to MeetSettle.
 ## Local Setup
 
 ```bash
-docker compose up db
+docker compose up -d db
 dotnet restore
-dotnet test packages/settlement-core.tests/MeetSettle.SettlementCore.Tests.csproj
-cd apps/web
 npm install
-npm run build
+```
+
+Run the API:
+
+```bash
+dotnet run --project apps/api/MeetSettle.Api.csproj
+```
+
+Run the web app:
+
+```bash
+npm run web:dev
+```
+
+## Checks
+
+```bash
+dotnet build
+dotnet test packages/settlement-core.tests/MeetSettle.SettlementCore.Tests.csproj
+npm --workspace @meetsettle/web run lint
+npm --workspace @meetsettle/web run build
 ```
 
 ## Branches
@@ -33,12 +51,4 @@ Please include:
 
 ## Pull Requests
 
-Keep PRs focused. Include tests for settlement algorithm changes, API behavior changes, and bug fixes.
-
-## Test Commands
-
-```bash
-dotnet test packages/settlement-core.tests/MeetSettle.SettlementCore.Tests.csproj
-cd apps/web
-npm run build
-```
+Keep pull requests focused. Include tests for settlement algorithm changes, API behavior changes, and bug fixes.

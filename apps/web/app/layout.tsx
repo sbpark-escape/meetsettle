@@ -6,7 +6,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "MeetSettle",
-  description: "Open-source meetup attendance and settlement toolkit",
+  description: "Meetup attendance and expense settlement",
   manifest: "/manifest.json"
 };
 

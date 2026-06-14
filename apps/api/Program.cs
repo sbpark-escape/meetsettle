@@ -49,13 +49,21 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+var applyMigrations = app.Environment.IsDevelopment()
+    || string.Equals(builder.Configuration["APPLY_MIGRATIONS"], "true", StringComparison.OrdinalIgnoreCase);
+
+if (applyMigrations)
 {
-    // 개발 환경에서는 Docker Compose로 처음 실행해도 DB 스키마가 준비되도록 migration을 자동 적용한다.
     using var scope = app.Services.CreateScope();
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await dbContext.Database.MigrateAsync();
+}
 
+var enableSwagger = app.Environment.IsDevelopment()
+    || string.Equals(builder.Configuration["ENABLE_SWAGGER"], "true", StringComparison.OrdinalIgnoreCase);
+
+if (enableSwagger)
+{
     app.UseSwagger();
     app.UseSwaggerUI();
 }

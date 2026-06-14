@@ -1,6 +1,6 @@
 # Settlement Algorithm
 
-MeetSettle's core value is the reusable settlement engine in `packages/settlement-core`.
+The settlement engine lives in `packages/settlement-core`.
 
 ## Inputs
 
@@ -40,7 +40,7 @@ Example: `100 KRW` split by Alex, Bora, and Chris becomes `34`, `33`, and `33`.
 
 This keeps totals reconciled while making test results stable.
 
-### Uneven Multi-Payer Example
+## Uneven Multi-Payer Example
 
 Alex pays `10,001 KRW` for Alex, Bora, and Chris. Bora also pays `5,000 KRW` for Bora and Chris.
 
@@ -51,9 +51,7 @@ After netting both expenses:
 - Bora owes Alex `834 KRW`.
 - Chris owes Alex `5,833 KRW`.
 
-The exact transfer set can change when payer order, participant order, or future currency policies change, but total paid and total owed must always reconcile.
-
-## Transfer Minimization
+## Transfer Calculation
 
 After all expenses are processed:
 
@@ -62,7 +60,7 @@ After all expenses are processed:
 3. The calculator walks both lists and creates transfers for the smaller remaining amount.
 4. Fully settled participants are removed from the running list.
 
-This produces a practical minimal transfer list based on net balances.
+This produces a practical transfer list based on net balances.
 
 ## Validation
 
@@ -78,7 +76,7 @@ The calculator rejects:
 - Non-positive weights.
 - Expense rules that leave no participants to share the cost.
 
-## Example
+## Simple Example
 
 Alex pays `60,000 KRW` for Alex, Bora, and Chris.
 
@@ -86,5 +84,5 @@ Each person owes `20,000 KRW`.
 
 Alex already paid, so the transfers are:
 
-- Bora -> Alex: `20,000 KRW`
-- Chris -> Alex: `20,000 KRW`
+- Bora to Alex: `20,000 KRW`
+- Chris to Alex: `20,000 KRW`

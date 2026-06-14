@@ -1,6 +1,6 @@
 # Security Policy
 
-MeetSettle is an early-stage OSS template. Please do not use it for sensitive production payment flows without a review.
+MeetSettle is an early-stage example for meetup expense tracking. Do not use it for sensitive payment flows without your own security review.
 
 ## Supported Versions
 
@@ -8,7 +8,7 @@ Security reports are accepted for the current `main` branch.
 
 ## Reporting a Vulnerability
 
-Open a private security advisory if the repository is hosted on GitHub, or contact the maintainer directly once a public contact method is added.
+Open a private security advisory if the repository is hosted on GitHub, or contact the project owner directly once a private contact method is available.
 
 ## Sensitive Data Rules
 

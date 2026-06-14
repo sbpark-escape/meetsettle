@@ -1,19 +1,17 @@
 # Changelog
 
-## v0.1.0 - Initial OSS release
+## v0.1.0 - 2026-06-14
 
 ### Added
 
-- Reusable settlement-core engine.
-- KRW settlement rounding policy.
-- Meetup, participant, expense, and settlement transfer flow.
-- Basic ASP.NET Core Web API structure.
-- Next.js demo app.
-- Docker Compose local development setup.
-- GitHub Actions CI.
-- OSS documentation.
+- Initial monorepo structure with ASP.NET Core API, Next.js web app, and `settlement-core` package.
+- PostgreSQL schema, EF Core migrations, and Docker Compose local setup.
+- Meetup, participant, expense, invite token, balance, and settlement transfer flows.
+- KRW whole-won rounding policy in the settlement calculator.
+- Unit tests for the settlement calculator.
+- Basic project documentation, contribution notes, and issue templates.
 
 ### Notes
 
-- This is an early-stage OSS release focused on a reusable settlement foundation.
-- Demo deployment and additional integrations are planned in future versions.
+- This is an early version intended for local development and examples.
+- Full authentication, payment provider integration, and notification flows are not included.

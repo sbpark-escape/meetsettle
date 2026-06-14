@@ -8,7 +8,7 @@ export default function DocsPage() {
         {[
           ["API", "Create meetups, participants, expenses, invite tokens, and settlement transfers."],
           ["Core", "Use the settlement engine without the example app."],
-          ["PWA", "Manifest is included, notification integration is on the roadmap."]
+          ["PWA", "Manifest metadata is included. Notifications are not included yet."]
         ].map(([title, text]) => (
           <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-soft" key={title}>
             <h2 className="text-xl font-black text-ink">{title}</h2>

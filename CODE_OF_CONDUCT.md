@@ -2,7 +2,7 @@
 
 ## Our Pledge
 
-We want MeetSettle to be a welcoming, practical, and respectful open-source project. Contributors are expected to communicate with care, assume good intent, and keep discussions focused on improving the project.
+We want MeetSettle to be a welcoming, practical, and respectful project. Contributors are expected to communicate with care, assume good intent, and keep discussions focused on improving the project.
 
 ## Expected Behavior
 
@@ -16,11 +16,11 @@ We want MeetSettle to be a welcoming, practical, and respectful open-source proj
 - Harassment, threats, or discriminatory language.
 - Personal attacks or repeated hostile comments.
 - Publishing private information without permission.
-- Deliberately disrupting issues, pull requests, or maintainer workflows.
+- Deliberately disrupting issues, pull requests, or project discussions.
 
 ## Enforcement
 
-Maintainers may edit, hide, or remove comments and may block participants who repeatedly violate this code of conduct.
+Project owners may edit, hide, or remove comments and may block participants who repeatedly violate this code of conduct.
 
 ## Reporting
 

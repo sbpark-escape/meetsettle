@@ -1,7 +1,7 @@
 {
   "name": "MeetSettle",
   "short_name": "MeetSettle",
-  "description": "Open-source meetup attendance and settlement toolkit",
+  "description": "Meetup attendance and expense settlement",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f5f7fb",

@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <main className="mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-6xl items-center gap-8 px-4 py-10 lg:grid-cols-[1fr_420px]">
       <section className="max-w-2xl">
-        <p className="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-mint">Open-source settlement toolkit</p>
+        <p className="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-mint">Meetup settlement toolkit</p>
         <h1 className="text-4xl font-black leading-tight text-ink sm:text-6xl">
           MeetSettle
         </h1>

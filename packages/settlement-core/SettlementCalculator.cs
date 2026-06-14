@@ -1,5 +1,5 @@
 // 파일 용도: 모임 비용을 참가자별 부담액과 최소 송금 목록으로 계산한다.
-// 파일 목적: 공개 OSS 사용자가 서비스와 무관하게 재사용할 수 있는 정산 규칙을 제공한다.
+// 파일 목적: 서비스와 무관하게 재사용할 수 있는 정산 규칙을 제공한다.
 namespace MeetSettle.SettlementCore;
 
 public sealed class SettlementCalculator
