@@ -70,6 +70,7 @@ if (enableSwagger)
 
 app.UseHttpsRedirection();
 app.UseCors("ConfiguredOrigins");
+app.MapGet("/health", static () => Results.Ok(new { status = "ok" }));
 app.MapControllers();
 
 app.Run();
