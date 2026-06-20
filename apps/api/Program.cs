@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-builder.Services.AddSingleton(new NpgsqlConnectionFactory(connectionString));
+builder.Services.AddSingleton<IDbConnectionFactory>(new NpgsqlConnectionFactory(connectionString));
 builder.Services.AddScoped<SettlementCalculator>();
 builder.Services.AddScoped<SettlementProjectionService>();
 
@@ -74,3 +74,5 @@ app.MapGet("/health", static () => Results.Ok(new { status = "ok" }));
 app.MapControllers();
 
 app.Run();
+
+public partial class Program;

@@ -62,7 +62,7 @@ Useful checks:
 
 ```bash
 dotnet build
-dotnet test packages/settlement-core.tests/MeetSettle.SettlementCore.Tests.csproj
+dotnet test
 npm --workspace @meetsettle/web run lint
 npm --workspace @meetsettle/web run build
 ```
@@ -132,7 +132,7 @@ For settlement rules, see [docs/settlement-algorithm.md](docs/settlement-algorit
 - The API and web app do not include full authentication.
 - There is no payment provider integration.
 - Invite tokens should be treated like bearer credentials.
-- Automated tests currently focus on `settlement-core`.
+- Automated tests cover `settlement-core` and a lightweight API meetup flow.
 
 Troubleshooting notes are in [docs/troubleshooting.md](docs/troubleshooting.md).
 

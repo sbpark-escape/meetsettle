@@ -5,9 +5,73 @@ updates:
     schedule:
       interval: weekly
     groups:
-      npm-dependencies:
+      # Keep migration-heavy ecosystems isolated from routine updates.
+      # Dependabot assigns a dependency to the first matching group.
+      frontend-tooling-minor-patch:
+        patterns:
+          - "postcss"
+          - "autoprefixer"
+        update-types:
+          - "minor"
+          - "patch"
+      frontend-tooling-major:
+        patterns:
+          - "postcss"
+          - "autoprefixer"
+        update-types:
+          - "major"
+      typescript-tooling-minor-patch:
+        patterns:
+          - "typescript"
+          - "@types/*"
+        update-types:
+          - "minor"
+          - "patch"
+      typescript-tooling-major:
+        patterns:
+          - "typescript"
+          - "@types/*"
+        update-types:
+          - "major"
+      tailwind-minor-patch:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+        update-types:
+          - "minor"
+          - "patch"
+      tailwind-major:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+        update-types:
+          - "major"
+      react-next-minor-patch:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+        update-types:
+          - "minor"
+          - "patch"
+      react-next-major:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+        update-types:
+          - "major"
+      npm-minor-patch:
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
+      npm-major:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
 
   - package-ecosystem: nuget
     directory: /

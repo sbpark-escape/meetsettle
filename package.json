@@ -9,7 +9,7 @@
     "web:dev": "npm --workspace @meetsettle/web run dev",
     "web:build": "npm --workspace @meetsettle/web run build",
     "api:run": "dotnet run --project apps/api/MeetSettle.Api.csproj",
-    "test": "dotnet test packages/settlement-core.tests/MeetSettle.SettlementCore.Tests.csproj"
+    "test": "dotnet test"
   },
   "overrides": {
     "postcss": "8.5.10"

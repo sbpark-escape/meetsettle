@@ -9,7 +9,7 @@ namespace MeetSettle.Api.Controllers;
 
 [ApiController]
 [Route("api/invites")]
-public sealed class InvitesController(NpgsqlConnectionFactory connectionFactory) : ControllerBase
+public sealed class InvitesController(IDbConnectionFactory connectionFactory) : ControllerBase
 {
     [HttpGet("{token}")]
     public async Task<ActionResult<InviteMeetupResponse>> GetInviteAsync(

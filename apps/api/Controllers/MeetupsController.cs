@@ -17,7 +17,7 @@ namespace MeetSettle.Api.Controllers;
 [Route("api/meetups")]
 public sealed class MeetupsController(
     AppDbContext dbContext,
-    NpgsqlConnectionFactory connectionFactory,
+    IDbConnectionFactory connectionFactory,
     SettlementCalculator settlementCalculator,
     SettlementProjectionService settlementProjectionService) : ControllerBase
 {
@@ -46,9 +46,8 @@ public sealed class MeetupsController(
         dbContext.Meetups.Add(meetup);
         await dbContext.SaveChangesAsync(cancellationToken);
 
-        return CreatedAtAction(
-            nameof(GetMeetupAsync),
-            new { id = meetup.Id },
+        return Created(
+            $"/api/meetups/{meetup.Id}",
             new MeetupSummaryResponse(
                 meetup.Id,
                 meetup.Name,
@@ -495,33 +494,65 @@ public sealed class MeetupsController(
         return $"{fromParticipantId:N}:{toParticipantId:N}:{amount:0.##}";
     }
 
-    private sealed record MeetupSummaryRow(
-        Guid Id,
-        string Name,
-        DateOnly Date,
-        string? Location,
-        string Currency,
-        DateTimeOffset CreatedAt);
+    private sealed class MeetupSummaryRow
+    {
+        public Guid Id { get; set; }
 
-    private sealed record SettlementMeetupRow(Guid Id, string Currency);
+        public string Name { get; set; } = string.Empty;
 
-    private sealed record SettlementParticipantRow(Guid Id, string Name);
+        public DateOnly Date { get; set; }
 
-    private sealed record ExpenseRow(
-        Guid Id,
-        string Title,
-        Guid PayerParticipantId,
-        decimal Amount);
+        public string? Location { get; set; }
 
-    private sealed record ExpenseShareRow(
-        Guid ExpenseId,
-        Guid ParticipantId,
-        decimal Weight);
+        public string Currency { get; set; } = string.Empty;
 
-    private sealed record PersistedTransferRow(
-        Guid Id,
-        Guid FromParticipantId,
-        Guid ToParticipantId,
-        decimal Amount,
-        bool IsCompleted);
+        public DateTimeOffset CreatedAt { get; set; }
+    }
+
+    private sealed class SettlementMeetupRow
+    {
+        public Guid Id { get; set; }
+
+        public string Currency { get; set; } = string.Empty;
+    }
+
+    private sealed class SettlementParticipantRow
+    {
+        public Guid Id { get; set; }
+
+        public string Name { get; set; } = string.Empty;
+    }
+
+    private sealed class ExpenseRow
+    {
+        public Guid Id { get; set; }
+
+        public string Title { get; set; } = string.Empty;
+
+        public Guid PayerParticipantId { get; set; }
+
+        public decimal Amount { get; set; }
+    }
+
+    private sealed class ExpenseShareRow
+    {
+        public Guid ExpenseId { get; set; }
+
+        public Guid ParticipantId { get; set; }
+
+        public decimal Weight { get; set; }
+    }
+
+    private sealed class PersistedTransferRow
+    {
+        public Guid Id { get; set; }
+
+        public Guid FromParticipantId { get; set; }
+
+        public Guid ToParticipantId { get; set; }
+
+        public decimal Amount { get; set; }
+
+        public bool IsCompleted { get; set; }
+    }
 }
