@@ -19,6 +19,8 @@ builder.Services.AddControllers();
 builder.Services.AddProblemDetails();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Health endpoint
+builder.Services.AddHealthChecks().AddNpgSql(connectionString);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
@@ -72,6 +74,8 @@ app.UseHttpsRedirection();
 app.UseCors("ConfiguredOrigins");
 app.MapGet("/health", static () => Results.Ok(new { status = "ok" }));
 app.MapControllers();
+// Health endpoint
+app.MapHealthChecks("/health");
 
 app.Run();
 
